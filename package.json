@@ -1,0 +1,21 @@
+{
+  "name": "tripetto-question-parser",
+  "description": "NodeJS script to parse tripetto form definitions ",
+  "main": "src/index.ts",
+  "scripts": {
+    "start": "ts-node src/index.ts"
+  },
+  "dependencies": {
+    "@fast-csv/format": "4.3.5",
+    "remeda": "0.0.32",
+    "superjson": "1.9.0",
+    "tripetto-runner-foundation": "6.3.0"
+  },
+  "devDependencies": {
+    "typescript": "4.4.4",
+    "ts-node": "10.7.0"
+  },
+  "resolutions": {
+    "@babel/preset-env": "7.13.8"
+  }
+}

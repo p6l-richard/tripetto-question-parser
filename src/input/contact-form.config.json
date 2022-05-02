@@ -1,0 +1,510 @@
+{
+  "name": "Contact details",
+  "language": "en",
+  "clusters": [
+    {
+      "id": "b89bd2f6704a93704326802778c7e9f7ca417117f5e0abbce97173c5564e8500",
+      "name": "Identification",
+      "nodes": [
+        {
+          "id": "b53c15f45f1ed2b56cf9805142fadc13b712a56baac4e059428245f7a7b042be",
+          "name": "Your full name",
+          "nameVisible": true,
+          "slots": [
+            {
+              "id": "4ecca2e6f3213dcd695eee8a16e7c57689defea89769ff9fa3739df746073100",
+              "type": "text",
+              "kind": "static",
+              "reference": "value",
+              "label": "Text",
+              "alias": "full_name",
+              "required": true,
+              "transformation": "capitalize-words"
+            }
+          ],
+          "block": {
+            "type": "tripetto-block-text",
+            "version": "5.0.3"
+          }
+        },
+        {
+          "id": "0436476291000c172d4b1fb81148c3ddcaed47df51fb0d2940527f88d38b43e1",
+          "disabled": false,
+          "name": "referral",
+          "slots": [
+            {
+              "id": "2f902dfeb6135eed8df000d2460c504ee13fa782e52be1c4db3bcd1782649b3b",
+              "type": "string",
+              "kind": "static",
+              "reference": "value",
+              "label": "Hidden field / Local storage / referral",
+              "alias": "referral"
+            }
+          ],
+          "block": {
+            "type": "tripetto-block-hidden-field",
+            "version": "5.0.2",
+            "fieldType": "localStorage",
+            "fieldLocalStorage": "apply.referral",
+            "alias": "referral"
+          }
+        },
+        {
+          "id": "a6e40a75da8f5a862ca4647a949f8ab2ab1f128b4185309c8dc3f82ec29552e1",
+          "disabled": false,
+          "name": "email",
+          "slots": [
+            {
+              "id": "fe577c21d698ed2ac70f1ed53d9e4d3bb2393456988b9d82ff8ed2437a706623",
+              "type": "string",
+              "kind": "static",
+              "reference": "value",
+              "label": "Hidden field / Local storage / email"
+            }
+          ],
+          "block": {
+            "type": "tripetto-block-hidden-field",
+            "version": "5.0.2",
+            "fieldType": "localStorage",
+            "fieldLocalStorage": "apply.email"
+          }
+        },
+        {
+          "id": "df427ce18c46d2570b70d5832a53820fdc9ffede1f16df9f94af76e1d58cad38",
+          "name": "od_id",
+          "slots": [
+            {
+              "id": "d6fd58e44dcf90393e365ec4580450f0886cdd5e84c171e5bf7acca2c8288f46",
+              "type": "string",
+              "kind": "static",
+              "reference": "value",
+              "label": "Hidden field / Local storage / od_id"
+            }
+          ],
+          "block": {
+            "type": "tripetto-block-hidden-field",
+            "version": "5.0.2",
+            "fieldType": "localStorage",
+            "fieldLocalStorage": "apply.od_id"
+          }
+        }
+      ],
+      "branches": [
+        {
+          "id": "c13afe60f6161615a71497b4f07f2d87b24de97639ea6f066132df4c222be42c",
+          "name": "With a referral",
+          "clusters": [
+            {
+              "id": "fd97f491a743adab4b9857f40989cf862b4e5f101dffa1868d183c48486a7e8e",
+              "name": "You've been referred",
+              "nodes": [
+                {
+                  "id": "ee4c4a8d7ccfd804e89710eda7b3073a6daeac7c1967801ee9e563640a053745",
+                  "name": "How do you know @2f902dfeb6135eed8df000d2460c504ee13fa782e52be1c4db3bcd1782649b3b?",
+                  "nameVisible": true,
+                  "slots": [
+                    {
+                      "id": "4e867766560696140c1d84d19c05f2d2022e9cf3fa33a92e381cbd64654ec868",
+                      "type": "string",
+                      "kind": "static",
+                      "reference": "choice",
+                      "label": "Choice",
+                      "alias": "referral_relationship"
+                    }
+                  ],
+                  "block": {
+                    "type": "tripetto-block-multiple-choice",
+                    "version": "5.1.0",
+                    "choices": [
+                      {
+                        "id": "02528c9b4052120fa9514254549307bf3276168c3937e28662d2da24501a3b29",
+                        "name": "We are friends"
+                      },
+                      {
+                        "id": "dd0433c6eabd2f5172f615056ed566c0c757b56bc1b0752aa34f9d6e4bffd7cf",
+                        "name": "We are currently colleagues"
+                      },
+                      {
+                        "id": "fa73b9db9f99d4d20871b10f27d89835c0cb86e63993f35fc717ec13c87171c7",
+                        "name": "We used to work at the same company"
+                      },
+                      {
+                        "id": "f6902f870788f4d3edfa0ea8b2e9dc6926edca0760d7150bca6748176f18f1f2",
+                        "name": "We've collaborated in the past"
+                      },
+                      {
+                        "id": "b63067048f6835ff90e9fb8340097c63c7807126fcd36c4ab5b0282f6626ca7d",
+                        "name": "Friend of a friend"
+                      },
+                      {
+                        "id": "d18b14caaafbd97caec6f151ea6e22fa80c216df7c6735cc5a979b235e06a5d0",
+                        "name": "Investor"
+                      },
+                      {
+                        "id": "e09102d6af16e6e90317f0588a801365ec1b226b0be15de76c9d888bc24b3bf3",
+                        "name": "Friend of a team member"
+                      }
+                    ],
+                    "alias": "referral_relationship"
+                  }
+                }
+              ],
+              "branches": [
+                {
+                  "id": "e31ddbd93947ec5a6adcc9835647b1ded8bcb6be74287fdc8615551c384c508a",
+                  "clusters": [
+                    {
+                      "id": "208e4af05aea81861277dbc399ef413a608f47b2e2569436a36d85c50faf32df",
+                      "nodes": [
+                        {
+                          "id": "733554a58913f95c124626b8d38b801ae6bf0fada5ba4ecdcd8e4f40b268eee0",
+                          "name": "Which partner do you work with?",
+                          "nameVisible": true,
+                          "slots": [
+                            {
+                              "id": "e16794e7504b6648f5204c7815a166e7978f98d56abc33e56de3f94b04da7baf",
+                              "type": "text",
+                              "kind": "static",
+                              "reference": "value",
+                              "label": "Text",
+                              "alias": "vc_partner_name",
+                              "required": true
+                            }
+                          ],
+                          "block": {
+                            "type": "tripetto-block-text",
+                            "version": "5.0.3"
+                          }
+                        }
+                      ]
+                    }
+                  ],
+                  "conditions": [
+                    {
+                      "id": "e1439664e878394a290cd9f7ab668d7951d07a3f32e81e4e01afe9a5d9736765",
+                      "block": {
+                        "choice": "d18b14caaafbd97caec6f151ea6e22fa80c216df7c6735cc5a979b235e06a5d0",
+                        "type": "tripetto-block-multiple-choice",
+                        "version": "5.1.0",
+                        "node": "ee4c4a8d7ccfd804e89710eda7b3073a6daeac7c1967801ee9e563640a053745",
+                        "slot": "4e867766560696140c1d84d19c05f2d2022e9cf3fa33a92e381cbd64654ec868"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "conditions": [
+            {
+              "id": "90e0b6ee406ca8b16edacb0e7f7967d03bbf217c6587b55876da31812e9a3fa9",
+              "block": {
+                "type": "tripetto-block-hidden-field:string",
+                "version": "5.0.2",
+                "node": "0436476291000c172d4b1fb81148c3ddcaed47df51fb0d2940527f88d38b43e1",
+                "slot": "2f902dfeb6135eed8df000d2460c504ee13fa782e52be1c4db3bcd1782649b3b",
+                "mode": "defined"
+              }
+            }
+          ],
+          "culling": "all"
+        }
+      ]
+    },
+    {
+      "id": "932fddb0e22b30ca2398454e09191f4025e43d2068909f30e1b661eb02b4b176",
+      "name": "Social profiles",
+      "nodes": [
+        {
+          "id": "539af8a8e89c89d0cd938903ab4e8a673e247f94c49e632eb8be1c64a2340662",
+          "name": "What is your LinkedIn?",
+          "nameVisible": true,
+          "placeholder": "https://linkedin.com/in/your-name",
+          "slots": [
+            {
+              "id": "cc5f70de2fec1262df0d5b30cfb541827835378f0e30fbed9416c0c0f3c9512b",
+              "type": "string",
+              "kind": "static",
+              "reference": "url",
+              "label": "URL",
+              "alias": "linkedin_url",
+              "required": true
+            }
+          ],
+          "block": {
+            "type": "tripetto-block-url",
+            "version": "5.0.0"
+          }
+        },
+        {
+          "id": "ec2062652d3f5fcdfe338ced226a702efdd059ca95ef96c35bd5ebb6ce61c17f",
+          "explanation": "Just your username without the @",
+          "name": "What is your Twitter?",
+          "nameVisible": true,
+          "placeholder": "your_username",
+          "slots": [
+            {
+              "id": "361d3fb61ebd93ad9229584e51910f06d639827bd92c284e391864b53e17a198",
+              "type": "text",
+              "kind": "static",
+              "reference": "value",
+              "label": "Text",
+              "alias": "twitter",
+              "transformation": "lowercase"
+            }
+          ],
+          "block": {
+            "type": "tripetto-block-text",
+            "version": "5.0.3"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c2fd65a128e61dffdaa97afcddb75e3983b598d996e9312caf1c7b82cc3bb070",
+      "nodes": [
+        {
+          "id": "e9bd03461f90353f5ea9bbaf79962264f80b43ed9fcd8c9c84232cde95c369a1",
+          "name": "url",
+          "slots": [
+            {
+              "id": "c6e8dc367a703fa82223586aee9f1ef8a7f8a68ab4c7ba9f44b3bfa9681bdc61",
+              "type": "string",
+              "kind": "static",
+              "reference": "value",
+              "label": "Hidden field / Page URL"
+            }
+          ],
+          "block": {
+            "type": "tripetto-block-hidden-field",
+            "version": "5.0.2",
+            "fieldType": "url"
+          }
+        }
+      ],
+      "branches": [
+        {
+          "id": "8589face65b670711075ad87fbb2c332948e8e7bb446496e85de29f8a015ab65",
+          "clusters": [
+            {
+              "id": "c6799be252970f3c14e1e20f44c24ad0c9a015c26a9ce2c4f5f0ed960a7cc9e4",
+              "nodes": [
+                {
+                  "id": "34bcfa66e7844a976f256b2858023894127c3224b0b1ca12488b1a807b1c3f52",
+                  "name": "Which learning track would you be most interested in selecting if accepted?",
+                  "nameVisible": true,
+                  "slots": [
+                    {
+                      "id": "7839e8742f61ce050762cef253bdbd7fa9e853e098d9bd62e2957cd1dc586b72",
+                      "type": "string",
+                      "kind": "static",
+                      "reference": "choice",
+                      "label": "Choice",
+                      "alias": "design_learning_track",
+                      "required": true
+                    }
+                  ],
+                  "block": {
+                    "type": "tripetto-block-multiple-choice",
+                    "version": "5.1.0",
+                    "choices": [
+                      {
+                        "id": "70d391717e0dae9974384517fcaecd72c4a8e45d55bb0964fba7d51c193e200b",
+                        "name": "Design Management"
+                      },
+                      {
+                        "id": "c7d0e5d51bc0c469055f2eefe40444ff45727edd843999d5cae3f4051729184c",
+                        "name": "First Designer"
+                      },
+                      {
+                        "id": "cb61bd1977c97a480cc94dc12a7d81f68b4680e6ef6d726e314e7bdccdfdfa89",
+                        "name": "Senior IC (Staff & Principal level)"
+                      }
+                    ],
+                    "required": true,
+                    "alias": "design_learning_track"
+                  }
+                }
+              ]
+            }
+          ],
+          "conditions": [
+            {
+              "id": "57f200af1a813c56a162b4f32b1a39133f8662504237e4c803a924c1e5180caa",
+              "block": {
+                "type": "tripetto-block-hidden-field:string",
+                "version": "5.0.2",
+                "node": "e9bd03461f90353f5ea9bbaf79962264f80b43ed9fcd8c9c84232cde95c369a1",
+                "slot": "c6e8dc367a703fa82223586aee9f1ef8a7f8a68ab4c7ba9f44b3bfa9681bdc61",
+                "mode": "contains",
+                "value": "programs/design/",
+                "ignoreCase": true
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "f63618f76d8a94b0be3b965fd6db8aa8cc3d30b4033544cff26934ad2bbf292f",
+      "name": "Attribution",
+      "nodes": [
+        {
+          "id": "51933a91d2d01e63e44a2270821f6ce1a138e5a43fd63273c04365de6c72dbac",
+          "name": "How did you hear about this On Deck Fellowship?",
+          "nameVisible": true,
+          "placeholder": "Please choose…",
+          "slots": [
+            {
+              "id": "fcd02a63b3675c4b94f32c86e755fd9d1a3b796343a8a73be8833473aa2a903a",
+              "type": "string",
+              "kind": "static",
+              "reference": "option",
+              "label": "Selected option",
+              "alias": "how_you_heard_about_od",
+              "required": true
+            }
+          ],
+          "block": {
+            "type": "tripetto-block-dropdown",
+            "version": "5.1.1",
+            "options": [
+              {
+                "id": "bbbe18a3ebd0323e2186957509c54cbf8d5c5b48bbf3fcc21e0cf68580740025",
+                "name": "Referred by a Fellow"
+              },
+              {
+                "id": "07b302de0280f5773fab2e0ec58986647bdbe4814f833e3b8bad5a00017cb615",
+                "name": "Referred by someone else (investor, mentor, etc.)"
+              },
+              {
+                "id": "30ae9b4ef889d6c9781c225872e6b316e7ce3a8aed0da1d7d7c7d154d019393f",
+                "name": "Twitter"
+              },
+              {
+                "id": "6ea2325138f8771b8c073a4a1c32279af5f34a36705e41ce304aa367acba60e7",
+                "name": "From someone on the On Deck team"
+              },
+              {
+                "id": "757220037125fde628d39d55b1065d3b083ddf0061fda9a9c7395b729cf72cde",
+                "name": "Google"
+              },
+              {
+                "id": "8e3be579029116c55fbefdc2921f1489c75676f2d64ce49e622a2d327d4b8e3f",
+                "name": "Press / Media"
+              },
+              {
+                "id": "649c377dd2349a53200670e96dc6788c7e245d0bc0ce179473ce76b6459dd846",
+                "name": "Product Hunt"
+              },
+              {
+                "id": "724afcbf90e995d5c3cf68dc07cfac75431ac3cff057c3dadaf3aa8594d90cd6",
+                "name": "LinkedIn"
+              },
+              {
+                "id": "c9976ff126ca356c2cf171abe332fbf5ef2df581f9014b33e73897069457becc",
+                "name": "On Deck Journal"
+              },
+              {
+                "id": "78f291154309e7a34241a46f720f1d50a51d67172c8e8893a66370668b8c197f",
+                "name": "The Deep End Podcast"
+              },
+              {
+                "id": "b7cc8544acd46d1a57a6d83f3ef3b6bd411ba49d21424d15ebc84db9a8df71ee",
+                "name": "Other"
+              }
+            ]
+          }
+        },
+        {
+          "id": "787bbcbad4005ffc15c0db5e225cd6d1eb12bdaa11caf0ef9d581f62cf1a7c21",
+          "name": "Please expand on how you heard about the Fellowship",
+          "nameVisible": true,
+          "slots": [
+            {
+              "id": "34f93ed7f6fa8c9471e97b4802303f16d02e463d46a6f979993d0e88ef6a4741",
+              "type": "text",
+              "kind": "static",
+              "reference": "value",
+              "label": "Multi-line text",
+              "alias": "how_you_heard_about_od_explain"
+            }
+          ],
+          "block": {
+            "type": "tripetto-block-textarea",
+            "version": "5.0.0"
+          }
+        },
+        {
+          "id": "97fe855a73c06dd97e3a0bd0c577e6845f5e65239ffb47fa62fd2d42cb09f355",
+          "name": "utm_campaign",
+          "slots": [
+            {
+              "id": "0b27803dc960fcfd25803056ff094ddd950a55edf61176ad6ea69b7ee7066b51",
+              "type": "string",
+              "kind": "static",
+              "reference": "value",
+              "label": "Hidden field / Local storage / utm_campaign",
+              "alias": "utm_campaign",
+              "exportable": true
+            }
+          ],
+          "block": {
+            "type": "tripetto-block-hidden-field",
+            "version": "5.0.2",
+            "fieldType": "localStorage",
+            "fieldLocalStorage": "apply.utm_campaign",
+            "alias": "utm_campaign",
+            "exportable": true
+          }
+        },
+        {
+          "id": "76b670595dd957167ad74ae1a1796aee8d6d9bef7feba8c39c35d20d5b49e4b6",
+          "name": "utm_source",
+          "slots": [
+            {
+              "id": "37d8a5a11c3511a9b20f51f913dc537fcef6bcd7009f905679697493c9cd67be",
+              "type": "string",
+              "kind": "static",
+              "reference": "value",
+              "label": "Hidden field / Local storage / utm_source",
+              "alias": "utm_source"
+            }
+          ],
+          "block": {
+            "type": "tripetto-block-hidden-field",
+            "version": "5.0.2",
+            "fieldType": "localStorage",
+            "fieldLocalStorage": "apply.utm_source",
+            "alias": "utm_source"
+          }
+        },
+        {
+          "id": "d7e03111ef8a9e6f21d3529eb39da2cbe6b179af5705036928d2d9777e1c3f99",
+          "name": "utm_medium",
+          "slots": [
+            {
+              "id": "2e230da0f285e433463563e80a474c1ca4b65de92f4eea68e850ac7afc7900c0",
+              "type": "string",
+              "kind": "static",
+              "reference": "value",
+              "label": "Hidden field / Local storage / utm_medium",
+              "alias": "utm_medium"
+            }
+          ],
+          "block": {
+            "type": "tripetto-block-hidden-field",
+            "version": "5.0.2",
+            "fieldType": "localStorage",
+            "fieldLocalStorage": "apply.utm_medium",
+            "alias": "utm_medium"
+          }
+        }
+      ]
+    }
+  ],
+  "builder": {
+    "name": "tripetto",
+    "version": "4.3.2"
+  }
+}
