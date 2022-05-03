@@ -1,4 +1,4 @@
-import type { IDefinition, INode, Value } from "tripetto-runner-foundation";
+import type { IDefinition, INode } from "tripetto-runner-foundation";
 import * as R from "remeda";
 
 // note(richard): note sure why TS complains about being unable to import ICluster
@@ -10,17 +10,18 @@ const getNodes = <Metadata extends Record<string, any>>(
   // early return if empty
   if (nodes.length < 1) return [];
 
-  let parsedNodes = [] as (Pick<INode, "name" | "description"> & Metadata)[];
+  let parsedNodes = [] as (Pick<INode, "name" | "description" | "id"> &
+    Metadata)[];
 
   for (const node of nodes) {
     // skip if a node doesn't have a block (it has no functionality other than supplying static text to the runner)
     if (!node.block) continue;
 
     // pick only relevant fields
-    const pickedProps = R.pick(node, ["name", "description"]);
+    const pickedProps = R.pick(node, ["name", "description", "id"]);
     const withMetadata = { ...pickedProps, ...(metadata && metadata) } as Pick<
       INode,
-      "name" | "description"
+      "name" | "description" | "id"
     > &
       Metadata;
     // append nodes
