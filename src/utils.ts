@@ -1,32 +1,39 @@
-import type { IDefinition, INode } from "tripetto-runner-foundation";
+import type { IDefinition, INode, Value } from "tripetto-runner-foundation";
 import * as R from "remeda";
 
 // note(richard): note sure why TS complains about being unable to import ICluster
 type ICluster = IDefinition["clusters"][number];
-
-const getNodes = (nodes: INode[]) => {
+const getNodes = <Metadata extends Record<string, any>>(
+  nodes: INode[],
+  metadata?: Metadata
+) => {
   // early return if empty
   if (nodes.length < 1) return [];
 
-  let parsedNodes = [] as Pick<INode, "name" | "description">[];
+  let parsedNodes = [] as (Pick<INode, "name" | "description"> & Metadata)[];
 
   for (const node of nodes) {
     // skip if a node doesn't have a block (it has no functionality other than supplying static text to the runner)
     if (!node.block) continue;
 
     // pick only relevant fields
-    const pickedNodes = R.pick(node, ["name", "description"]);
-
+    const pickedProps = R.pick(node, ["name", "description"]);
+    const withMetadata = { ...pickedProps, ...(metadata && metadata) } as Pick<
+      INode,
+      "name" | "description"
+    > &
+      Metadata;
     // append nodes
-    parsedNodes.push(pickedNodes);
+    parsedNodes.push(withMetadata);
   }
 
   return parsedNodes;
 };
 
-const parseClustersToArray = (
+const parseClustersToArray = <Metadata extends Record<string, any>>(
   clusters: ICluster[],
-  array: Pick<INode, "description" | "name">[]
+  array: (Pick<INode, "description" | "name"> & Metadata)[],
+  metadata?: Metadata
 ) => {
   // early return if no cluster present
   if (clusters.length < 1) return;
@@ -49,7 +56,7 @@ const parseClustersToArray = (
 
     // append to array
     if (nodes) {
-      const clusterNodes = getNodes(nodes);
+      const clusterNodes = getNodes(nodes, metadata);
       array.push(...clusterNodes);
     }
   }

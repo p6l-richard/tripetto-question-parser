@@ -6,18 +6,21 @@ import { inputs } from "./input";
 import { CsvFile } from "./csv";
 
 // parse form clusters into global questions
-let questions = [] as Pick<INode, "name" | "description">[];
+let metadata = {} as { formName: string; program: string };
+let questions = [] as (Pick<INode, "name" | "description"> & typeof metadata)[];
 for (const input of inputs) {
-  const form = superjson.stringify(input);
+  const form = superjson.stringify(input.form);
   const { clusters } = superjson.parse<Pick<IDefinition, "clusters">>(form);
-  parseClustersToArray(clusters, questions);
+  metadata = { formName: input.name, program: input.program };
+  // mutate questions
+  parseClustersToArray(clusters, questions, metadata);
 }
 
 const outputPath = path.resolve(__dirname, "..", "output.csv");
 // write output to csv
 const csvFile = new CsvFile({
   path: outputPath,
-  headers: ["name", "description"],
+  headers: ["name", "description", ...(metadata && Object.keys(metadata))],
   quoteColumns: true,
 });
 const [firstRow, ...otherRows] = questions;
