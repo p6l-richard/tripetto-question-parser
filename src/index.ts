@@ -1,8 +1,9 @@
+import * as path from "path";
 import superjson from "superjson";
 import { parseClustersToArray } from "./utils";
 import type { IDefinition, INode } from "tripetto-runner-foundation";
-import { format } from "@fast-csv/format";
 import { inputs } from "./input";
+import { CsvFile } from "./csv";
 
 // parse form clusters into global questions
 let questions = [] as Pick<INode, "name" | "description">[];
@@ -12,10 +13,27 @@ for (const input of inputs) {
   parseClustersToArray(clusters, questions);
 }
 
-// write questions to csv
-const csvStream = format({ headers: true });
-csvStream.pipe(process.stdout).on("end", () => process.exit());
-for (const question of questions) {
-  csvStream.write(question);
-}
-csvStream.end();
+const outputPath = path.resolve(__dirname, "..", "output.csv");
+// write output to csv
+const csvFile = new CsvFile({
+  path: outputPath,
+  headers: ["name", "description"],
+  quoteColumns: true,
+});
+const [firstRow, ...otherRows] = questions;
+csvFile
+  // delete & re-create with first row data (note: row is required from fast-csv)
+  .overrideOrCreate([firstRow])
+  // append the other rows
+  .then(() => {
+    return csvFile.append(otherRows);
+  })
+  // read the file afterwards
+  .then(() => csvFile.read())
+  .then((contents) => {
+    console.log(`wrote to file: ${contents}`);
+  })
+  .catch((err) => {
+    console.error(err.stack);
+    process.exit(1);
+  });
